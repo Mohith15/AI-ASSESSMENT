@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.example.org/MathAreaITS#"
+     xml:base="http://www.example.org/MathAreaITS"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  
+  <!-- Ontology Declaration -->
+  <owl:Ontology rdf:about="http://www.example.org/MathAreaITS"/>
+  
+  <!-- =================================================== -->
+  <!-- Classes -->
+  <!-- =================================================== -->
+  
+  <!-- General Shape Class -->
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#Shape"/>
+  
+  <!-- TwoDimensionalShape is a subclass of Shape -->
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#TwoDimensionalShape">
+    <rdfs:subClassOf rdf:resource="http://www.example.org/MathAreaITS#Shape"/>
+  </owl:Class>
+  
+  <!-- Specific Shape Classes -->
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#Triangle">
+    <rdfs:subClassOf rdf:resource="http://www.example.org/MathAreaITS#TwoDimensionalShape"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#Circle">
+    <rdfs:subClassOf rdf:resource="http://www.example.org/MathAreaITS#TwoDimensionalShape"/>
+  </owl:Class>
+  
+  <!-- Quadrilateral as a two-dimensional shape -->
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#Quadrilateral">
+    <rdfs:subClassOf rdf:resource="http://www.example.org/MathAreaITS#TwoDimensionalShape"/>
+  </owl:Class>
+  
+  <!-- Subclasses of Quadrilateral -->
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#Square">
+    <rdfs:subClassOf rdf:resource="http://www.example.org/MathAreaITS#Quadrilateral"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#Rectangle">
+    <rdfs:subClassOf rdf:resource="http://www.example.org/MathAreaITS#Quadrilateral"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#Parallelogram">
+    <rdfs:subClassOf rdf:resource="http://www.example.org/MathAreaITS#Quadrilateral"/>
+  </owl:Class>
+  
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#Trapezoid">
+    <rdfs:subClassOf rdf:resource="http://www.example.org/MathAreaITS#Quadrilateral"/>
+  </owl:Class>
+  
+  <!-- Formula Class to hold area formulas -->
+  <owl:Class rdf:about="http://www.example.org/MathAreaITS#Formula"/>
+  
+  <!-- =================================================== -->
+  <!-- Object and Data Properties -->
+  <!-- =================================================== -->
+  
+  <!-- ObjectProperty linking a Shape to its Formula -->
+  <owl:ObjectProperty rdf:about="http://www.example.org/MathAreaITS#hasFormula">
+    <rdfs:domain rdf:resource="http://www.example.org/MathAreaITS#Shape"/>
+    <rdfs:range rdf:resource="http://www.example.org/MathAreaITS#Formula"/>
+  </owl:ObjectProperty>
+  
+  <!-- DataProperty for the actual formula expression -->
+  <owl:DatatypeProperty rdf:about="http://www.example.org/MathAreaITS#formulaExpression">
+    <rdfs:domain rdf:resource="http://www.example.org/MathAreaITS#Formula"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  
+  <!-- DataProperty for a textual description of the shape -->
+  <owl:DatatypeProperty rdf:about="http://www.example.org/MathAreaITS#description">
+    <rdfs:domain rdf:resource="http://www.example.org/MathAreaITS#Shape"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:DatatypeProperty>
+  
+  <!-- =================================================== -->
+  <!-- Individuals for Formulas -->
+  <!-- =================================================== -->
+  
+  <!-- Triangle Area Formula -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#TriangleAreaFormula">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Formula"/>
+    <formulaExpression rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      0.5 * base * height
+    </formulaExpression>
+  </owl:NamedIndividual>
+  
+  <!-- Square Area Formula -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#SquareAreaFormula">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Formula"/>
+    <formulaExpression rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      side * side
+    </formulaExpression>
+  </owl:NamedIndividual>
+  
+  <!-- Rectangle Area Formula -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#RectangleAreaFormula">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Formula"/>
+    <formulaExpression rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      length * width
+    </formulaExpression>
+  </owl:NamedIndividual>
+  
+  <!-- Circle Area Formula -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#CircleAreaFormula">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Formula"/>
+    <formulaExpression rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      3.14159 * radius^2
+    </formulaExpression>
+  </owl:NamedIndividual>
+  
+  <!-- Parallelogram Area Formula -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#ParallelogramAreaFormula">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Formula"/>
+    <formulaExpression rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      base * height
+    </formulaExpression>
+  </owl:NamedIndividual>
+  
+  <!-- Trapezoid Area Formula -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#TrapezoidAreaFormula">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Formula"/>
+    <formulaExpression rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      0.5 * (base1 + base2) * height
+    </formulaExpression>
+  </owl:NamedIndividual>
+  
+  <!-- =================================================== -->
+  <!-- Individuals for Shapes with Associated Formulas -->
+  <!-- =================================================== -->
+  
+  <!-- Triangle Instance -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#TriangleInstance">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Triangle"/>
+    <hasFormula rdf:resource="http://www.example.org/MathAreaITS#TriangleAreaFormula"/>
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      A triangle is a three-sided polygon. Its area is 0.5 * base * height.
+    </description>
+  </owl:NamedIndividual>
+  
+  <!-- Square Instance -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#SquareInstance">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Square"/>
+    <hasFormula rdf:resource="http://www.example.org/MathAreaITS#SquareAreaFormula"/>
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      A square has four equal sides. Its area is side * side.
+    </description>
+  </owl:NamedIndividual>
+  
+  <!-- Rectangle Instance -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#RectangleInstance">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Rectangle"/>
+    <hasFormula rdf:resource="http://www.example.org/MathAreaITS#RectangleAreaFormula"/>
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      A rectangle has opposite sides equal. Its area is length * width.
+    </description>
+  </owl:NamedIndividual>
+  
+  <!-- Circle Instance -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#CircleInstance">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Circle"/>
+    <hasFormula rdf:resource="http://www.example.org/MathAreaITS#CircleAreaFormula"/>
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      A circle is a round shape. Its area is pi * radius^2.
+    </description>
+  </owl:NamedIndividual>
+  
+  <!-- Parallelogram Instance -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#ParallelogramInstance">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Parallelogram"/>
+    <hasFormula rdf:resource="http://www.example.org/MathAreaITS#ParallelogramAreaFormula"/>
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      A parallelogram has two pairs of parallel sides. Its area is base * height.
+    </description>
+  </owl:NamedIndividual>
+  
+  <!-- Trapezoid Instance -->
+  <owl:NamedIndividual rdf:about="http://www.example.org/MathAreaITS#TrapezoidInstance">
+    <rdf:type rdf:resource="http://www.example.org/MathAreaITS#Trapezoid"/>
+    <hasFormula rdf:resource="http://www.example.org/MathAreaITS#TrapezoidAreaFormula"/>
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">
+      A trapezoid has one pair of parallel sides. Its area is 0.5 * (base1 + base2) * height.
+    </description>
+  </owl:NamedIndividual>
+  
+</rdf:RDF>

@@ -1,0 +1,27 @@
+body {
+    background-color: #f8f9fa;
+  }
+  
+  /* Navbar brand thicker text */
+  .navbar-brand {
+    font-weight: 600;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: auto;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 15px;
+  }
+  
+  .card-body {
+    border-radius: 15px;
+  }
+  
+  .btn {
+    border-radius: 5px;
+  }
+  

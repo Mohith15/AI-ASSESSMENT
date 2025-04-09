@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Shape Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('index') }}">Math Area ITS</a>
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+
+<div class="container my-5">
+  <h1 class="mb-4">Random Shape Quiz</h1>
+  
+  {% if result_message %}
+    <div class="alert 
+      {% if is_correct == True %}
+        alert-success
+      {% else %}
+        alert-danger
+      {% endif %}
+    ">
+      {{ result_message }}
+    </div>
+    <hr>
+    <div class="text-center mb-4">
+      <a href="{{ url_for('quiz') }}" class="btn btn-success">Try Another Quiz</a>
+      <a href="{{ url_for('index') }}" class="btn btn-secondary">Back to Home</a>
+    </div>
+  {% else %}
+    <p>We have selected a random shape from the ontology for you to practice!</p>
+    <p><strong>Shape:</strong> {{ shape.label }}</p>
+    <p><strong>Description:</strong> {{ shape.description }}</p>
+    <p><strong>Formula:</strong> {{ shape.formula_str }}</p>
+    
+    <hr>
+    <h5>Dimensions Provided:</h5>
+    <ul>
+      {% for dim, val in dims.items() %}
+      <li>{{ dim|capitalize }} = {{ val }}</li>
+      {% endfor %}
+    </ul>
+    
+    <p class="mt-3">
+      Calculate the area with these dimensions. Please provide your answer to 1 decimal place.
+    </p>
+    <form action="{{ url_for('quiz_check') }}" method="POST" class="my-4">
+      <div class="mb-3">
+        <label for="area_guess" class="form-label">Your Area Guess (1 decimal place):</label>
+        <input type="number" step="0.1" class="form-control" id="area_guess" name="area_guess"
+               placeholder="e.g. 34.2" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Check My Answer</button>
+      <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+  {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
